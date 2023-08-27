@@ -10,9 +10,57 @@ generator client {
 
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 // to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
+
+model User {
+  id    String     @id @default(cuid())
   email String  @unique
   name  String?
+  invoices Invoice[]
+}
+
+model Invoice {
+  id String @id @default(cuid())
+  user User @relation(fields: [userId], references: [id])
+  client Client @relation(fields: [clientId], references: [id])
+  clientId String
+  userId String
+  amount Int
+  date DateTime
+  submitted Boolean
+  paid Boolean
+  paidDate DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  fields InvoiceField[]
+}
+
+model InvoiceField {
+  id String @id @default(cuid())
+  invoice Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId String
+  jobName String
+  task String
+  value Decimal
+  rate Decimal
+  total Decimal
+  hours Decimal
+  date DateTime
+  startTime DateTime
+  endTime DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Client {
+  id String @id @default(cuid())
+  invoices Invoice[]
+  name String
+  address String
+  city String
+  state String
+  zip String
+  phone String
+  email String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

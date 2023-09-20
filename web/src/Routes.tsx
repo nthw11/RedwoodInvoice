@@ -15,6 +15,7 @@ import InvoicesLayout from 'src/layouts/InvoicesLayout/InvoicesLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={InvoicesLayout}>
       <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
         <Route path="/users/new" page={UserNewUserPage} name="newUser" />
         <Route path="/users/{id}/edit" page={UserEditUserPage} name="editUser" />
@@ -39,7 +40,6 @@ const Routes = () => {
         <Route path="/invoice-fields/{id}" page={InvoiceFieldInvoiceFieldPage} name="invoiceField" />
         <Route path="/invoice-fields" page={InvoiceFieldInvoiceFieldsPage} name="invoiceFields" />
       </Set>
-      <Set wrap={InvoicesLayout}>
       <Route path="/about" page={AboutPage} name="about" />
       <Route path="/" page={HomePage} name="home" />
       </Set>

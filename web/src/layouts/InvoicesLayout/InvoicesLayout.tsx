@@ -1,4 +1,4 @@
-import { VStack, Text, UnorderedList, ListItem } from '@chakra-ui/react'
+import { VStack, Text, UnorderedList, ListItem, Flex } from '@chakra-ui/react'
 // import { Header } from 'components/Header'
 import { Link, routes } from '@redwoodjs/router'
 
@@ -14,6 +14,7 @@ const InvoiceLayout = ({ children }: InvoiceLayoutProps) => {
     <Text as="h1" fontSize="2xl" fontWeight="bold">
       Invoices
     </Text>
+    <Flex m={5}>
     <UnorderedList>
       <ListItem>
         <Link to={routes.about()}>About</Link>
@@ -21,7 +22,14 @@ const InvoiceLayout = ({ children }: InvoiceLayoutProps) => {
       <ListItem>
         <Link to={routes.home()}>Home</Link>
       </ListItem>
+      <ListItem>
+        <Link to={routes.users()}>Users</Link>
+      </ListItem>
+      <ListItem>
+        <Link to={routes.invoices()}>Invoices</Link>
+      </ListItem>
     </UnorderedList>
+    </Flex>
   </header>
   {children}
 </VStack>
